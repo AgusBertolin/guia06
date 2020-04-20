@@ -70,5 +70,8 @@ public class Curso {
 		}
 	}
 
+	public Integer getCreditos() {
+		return this.creditos;
+	}
 
 }
