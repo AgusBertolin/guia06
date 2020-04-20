@@ -21,7 +21,4 @@ public class Alumno {
 	public void inscripcionAceptada(Curso c) {
 		//
 	}
-	
-	
-
 }
