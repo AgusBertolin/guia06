@@ -2,7 +2,7 @@ package died.guia06;
 
 import java.util.List;
 
-public class Alumno implements Comparable<Alumno> {
+public class Alumno {
 
 	private String nombre;
 	private Integer nroLibreta;
@@ -33,9 +33,12 @@ public class Alumno implements Comparable<Alumno> {
 	}
 	
 	@Override
-    public int compareTo(Alumno a) {
-        return this.nombre.compareTo(a.getNombre());
-    }
+	public String toString() {
+		String aux = this.nombre;
+		aux.concat(String.valueOf(this.nroLibreta));
+		return aux;
+ 
+	}
 	
 	public String getNombre() {
 		return this.nombre;
@@ -47,10 +50,6 @@ public class Alumno implements Comparable<Alumno> {
 
 	public List<Curso> getCursando() {
 		return cursando;
-	}
-
-	public void setCursando(List<Curso> cursando) {
-		this.cursando = cursando;
 	}
 
 	public Integer getNroLibreta() {
@@ -69,7 +68,4 @@ public class Alumno implements Comparable<Alumno> {
 		return aprobados;
 	}
 
-	public void setAprobados(List<Curso> aprobados) {
-		this.aprobados = aprobados;
-	}
 }
