@@ -18,8 +18,10 @@ public class Alumno implements Comparable<Alumno> {
 	}
 
 	public void aprobar(Curso c) {
-		this.cursando.remove(c);
-		this.aprobados.add(c);
+		if(this.cursando.contains(c)) {
+			this.cursando.remove(c);
+			this.aprobados.add(c);
+		}
 	}
 
 	public void inscripcionAceptada(Curso c) {
@@ -41,5 +43,33 @@ public class Alumno implements Comparable<Alumno> {
 	
 	public Integer getLibreta() {
 		return this.nroLibreta;
+	}
+
+	public List<Curso> getCursando() {
+		return cursando;
+	}
+
+	public void setCursando(List<Curso> cursando) {
+		this.cursando = cursando;
+	}
+
+	public Integer getNroLibreta() {
+		return nroLibreta;
+	}
+
+	public void setNroLibreta(Integer nroLibreta) {
+		this.nroLibreta = nroLibreta;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public List<Curso> getAprobados() {
+		return aprobados;
+	}
+
+	public void setAprobados(List<Curso> aprobados) {
+		this.aprobados = aprobados;
 	}
 }

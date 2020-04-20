@@ -73,5 +73,84 @@ public class Curso {
 	public Integer getCreditos() {
 		return this.creditos;
 	}
+	
+	public void setCreditos(int nuevoC) {
+		this.creditos = nuevoC;
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Integer getCicloLectivo() {
+		return cicloLectivo;
+	}
+
+
+	public void setCicloLectivo(Integer cicloLectivo) {
+		this.cicloLectivo = cicloLectivo;
+	}
+
+
+	public Integer getCupo() {
+		return cupo;
+	}
+
+
+	public void setCupo(Integer cupo) {
+		this.cupo = cupo;
+	}
+
+
+	public List<Alumno> getInscriptos() {
+		return inscriptos;
+	}
+
+
+	public void setInscriptos(List<Alumno> inscriptos) {
+		this.inscriptos = inscriptos;
+	}
+
+
+	public Integer getCreditosRequeridos() {
+		return creditosRequeridos;
+	}
+
+
+	public void setCreditosRequeridos(Integer creditosRequeridos) {
+		this.creditosRequeridos = creditosRequeridos;
+	}
+
+
+	public Registro getLog() {
+		return log;
+	}
+
+
+	public void setLog(Registro log) {
+		this.log = log;
+	}
+
+
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
+	}
 
 }
