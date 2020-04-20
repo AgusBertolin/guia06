@@ -1,5 +1,6 @@
 package died.guia06;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Alumno {
@@ -9,16 +10,23 @@ public class Alumno {
 	private List<Curso> cursando;
 	private List<Curso> aprobados;
 
+	public Alumno() {
+		this.cursando = new ArrayList<Curso>();
+		this.aprobados = new ArrayList<Curso>();
+	}
+	
 	public int creditosObtenidos() {
 		int aux = 0;
-		for(Curso c: this.aprobados) {
-			aux += (int) c.getCreditos();
+		if(this.aprobados != null) {
+			for(Curso c: this.aprobados) {
+				aux += (int) c.getCreditos();
+			}
 		}
 		return aux;
 	}
 
 	public void aprobar(Curso c) {
-		if(this.cursando.contains(c)) {
+		if(this.cursando != null && this.cursando.contains(c)) {
 			this.cursando.remove(c);
 			this.aprobados.add(c);
 		}
@@ -35,7 +43,7 @@ public class Alumno {
 	@Override
 	public String toString() {
 		String aux = this.nombre;
-		aux.concat(String.valueOf(this.nroLibreta));
+		aux = aux.concat(" " + String.valueOf(this.nroLibreta));
 		return aux;
  
 	}

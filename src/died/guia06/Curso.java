@@ -31,6 +31,7 @@ public class Curso {
 		super();
 		this.inscriptos = new ArrayList<Alumno>();
 		this.log = new Registro();
+		this.creditosRequeridos = 0;
 	}
 	
 
@@ -48,15 +49,15 @@ public class Curso {
 	 * @return
 	 * @throws IOException 
 	 */
-	public Boolean inscribir(Alumno a) throws IOException {
-		if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos.size() < this.cupo && a.getCursando().size() < 3) {
+	public Boolean inscribir(Alumno a) {
+		if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos != null && this.inscriptos.size() < this.cupo && (a.getCursando() == null || a.getCursando().size() < 3)) {
 			this.inscriptos.add(a);
 			a.inscripcionAceptada(this);
 			try {
 				log.registrar(this, "inscribir ",a.toString());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Exception thrown  :" + e);
 				return false;
 			}
 			return true;
@@ -69,13 +70,15 @@ public class Curso {
 	 * imprime los inscriptos en orden alfabetico
 	 */
 	public void imprimirInscriptosPorNombre() {
-		Collections.sort(this.inscriptos, new SortByNombre());
-		System.out.println(this.inscriptos);
-		try {
-			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(this.inscriptos != null) {
+			Collections.sort(this.inscriptos, new SortByNombre());
+			System.out.println(this.inscriptos);
+			try {
+				log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Exception thrown  :" + e);
+			}
 		}
 	}
 
@@ -86,7 +89,7 @@ public class Curso {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Exception thrown  :" + e);
 		}
 	}
 	
@@ -97,7 +100,7 @@ public class Curso {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Exception thrown  :" + e);
 		}
 	}
 	public Integer getCreditos() {
@@ -125,4 +128,7 @@ public class Curso {
 		this.creditos = creditos;
 	}
 
+	public List<Alumno> getInscriptos() {
+		return this.inscriptos;
+	}
 }
