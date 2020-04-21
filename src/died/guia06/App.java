@@ -25,11 +25,15 @@ public class App {
 		Curso c2 = new Curso();
 		Curso c3 = new Curso();
 		Curso c4 = new Curso();
+		Curso c5 = new Curso();
+		Curso c6 = new Curso();
 		
 		c1.setCupo(30);
 		c2.setCupo(3);
 		c3.setCupo(10);
 		c4.setCupo(2);
+		c5.setCupo(2);
+		c6.setCupo(2);
 		
 		c1.setCreditos(10);
 		c2.setCreditos(6);
@@ -40,16 +44,19 @@ public class App {
 		c2.setCreditosRequeridos(0);
 		c3.setCreditosRequeridos(0);
 		c4.setCreditosRequeridos(14);
+		c5.setCreditosRequeridos(0);
+		c6.setCreditosRequeridos(0);
 		
-		System.out.println(c2.inscribir(a1));
-		System.out.println(c2.inscribir(a2));
-		System.out.println(c2.inscribir(a5));
+		c2.inscribirAlumno(a1);
+		c2.inscribirAlumno(a2);
+		c2.inscribirAlumno(a5);
+		c2.inscribirAlumno(a3);
 		
 		c2.imprimirInscriptosPorNombre();
 		
-		System.out.println(c3.inscribir(a2));
-		System.out.println(c3.inscribir(a4));
-		System.out.println(c3.inscribir(a3));
+		c3.inscribirAlumno(a2);
+		c3.inscribirAlumno(a4);
+		c3.inscribirAlumno(a3);
 		
 		c3.imprimirInscriptosPorNroLibreta();
 		
@@ -57,11 +64,12 @@ public class App {
 		a2.aprobar(c3);
 		a3.aprobar(c3);
 		
-		System.out.println(c1.inscribir(a3));
-		System.out.println(c1.inscribir(a2));
-		System.out.println(c4.inscribir(a2));
-		System.out.println(c1.inscribir(a1));
-		System.out.println(c1.inscribir(a2));
+		c1.inscribirAlumno(a3);
+		c1.inscribirAlumno(a2);
+		c4.inscribirAlumno(a2);
+		c1.inscribirAlumno(a1);
+		c5.inscribirAlumno(a2);
+		c6.inscribirAlumno(a2);
 		
 		c1.imprimirInscriptosPorCreditos();
 	}
