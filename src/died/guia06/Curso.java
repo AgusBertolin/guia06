@@ -35,6 +35,25 @@ public class Curso {
 	}
 	
 
+	public void inscribirAlumno(Alumno a){
+		try {
+			this.inscribir(a);
+		}
+		catch (CreditosInsuficientes e){
+			System.out.println(e.getMessage());
+		}
+		catch (CupoCubierto e){
+			System.out.println(e.getMessage());
+		}
+		catch (CursoCompleto e) {
+			System.out.println(e.getMessage());
+		}
+		catch (RegistroAuditoriaException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
 	/**
 	 * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,
 	 * agrega el curso a la lista de cursos en los que está inscripto el alumno y retorna verdadero.
@@ -49,20 +68,28 @@ public class Curso {
 	 * @return
 	 * @throws IOException 
 	 */
-	public Boolean inscribir(Alumno a) {
+	public void inscribir(Alumno a) throws RegistroAuditoriaException, CreditosInsuficientes, CupoCubierto, CursoCompleto {
 		if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos != null && this.inscriptos.size() < this.cupo && !this.inscriptos.contains(a) && (a.getCursando() == null || a.getCursando().size() < 3)) {
 			this.inscriptos.add(a);
 			a.inscripcionAceptada(this);
-			try {
+			try{
 				log.registrar(this, "inscribir ",a.toString());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Exception thrown  :" + e);
-				return false;
 			}
-			return true;
+			catch (IOException e) {
+				throw new RegistroAuditoriaException("Exception thrown  :" + e);
+			}
 		}
-		return false;
+		else {
+			if(a.creditosObtenidos() < this.creditosRequeridos) {
+				throw new CreditosInsuficientes("Creditos insuficientes");
+			}
+			if(this.inscriptos != null && this.inscriptos.size() >= this.cupo) {
+				throw new CupoCubierto("Curso completo");
+			}
+			if(a.getCursando() != null && a.getCursando().size() == 3) {
+				throw new CursoCompleto("El alumno ya tiene todas las materias de cursado regular");
+			}
+		}
 	}
 	
 	

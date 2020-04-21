@@ -64,6 +64,5 @@ public class App {
 		System.out.println(c1.inscribir(a2));
 		
 		c1.imprimirInscriptosPorCreditos();
-		
 	}
 }
