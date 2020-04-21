@@ -50,7 +50,7 @@ public class Curso {
 	 * @throws IOException 
 	 */
 	public Boolean inscribir(Alumno a) {
-		if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos != null && this.inscriptos.size() < this.cupo && (a.getCursando() == null || a.getCursando().size() < 3)) {
+		if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos != null && this.inscriptos.size() < this.cupo && !this.inscriptos.contains(a) && (a.getCursando() == null || a.getCursando().size() < 3)) {
 			this.inscriptos.add(a);
 			a.inscripcionAceptada(this);
 			try {
@@ -95,6 +95,7 @@ public class Curso {
 	
 	public void imprimirInscriptosPorCreditos() {
 		Collections.sort(this.inscriptos, new SortByCreditos());
+		Collections.reverse(this.inscriptos);
 		System.out.println(this.inscriptos);
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
@@ -103,6 +104,11 @@ public class Curso {
 			System.out.println("Exception thrown  :" + e);
 		}
 	}
+	
+	public void eliminarAlumno(Alumno a) {
+		this.inscriptos.remove(a);
+	}
+	
 	public Integer getCreditos() {
 		return this.creditos;
 	}

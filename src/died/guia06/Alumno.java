@@ -29,6 +29,7 @@ public class Alumno {
 		if(this.cursando != null && this.cursando.contains(c)) {
 			this.cursando.remove(c);
 			this.aprobados.add(c);
+			c.eliminarAlumno(this);
 		}
 	}
 
