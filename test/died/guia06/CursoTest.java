@@ -29,21 +29,21 @@ class CursoTest {
 	
 	@Test
 	void testInscribirExitoso() {
-		c1.inscribir(a1);
+		c1.inscribirAlumno(a1);
 		assertTrue(c1.getInscriptos().contains(a1));
 	}
 
 	@Test
 	void testInscribirNoExitosoCupoLleno() {
 		c1.setCupo(0);
-		c1.inscribir(a1);
+		c1.inscribirAlumno(a1);
 		assertFalse(c1.getInscriptos().contains(a1));
 	}
 	
 	@Test
 	void testInscribirNoExitosoCreditosInsuficientes() {
 		c1.setCreditosRequeridos(12);
-		c1.inscribir(a1);
+		c1.inscribirAlumno(a1);
 		assertFalse(c1.getInscriptos().contains(a1));
 	}
 	
@@ -55,17 +55,17 @@ class CursoTest {
 		c2.setCupo(1);
 		c3.setCupo(1);
 		c4.setCupo(1);
-		c2.inscribir(a1);
-		c3.inscribir(a1);
-		c4.inscribir(a1);
-		c1.inscribir(a1);
+		c2.inscribirAlumno(a1);
+		c3.inscribirAlumno(a1);
+		c4.inscribirAlumno(a1);
+		c1.inscribirAlumno(a1);
 		assertFalse(c1.getInscriptos().contains(a1));
 	}
 	
 	@Test
 	void testImprimirInscriptosPorNombre() {
-		c1.inscribir(a1);
-		c1.inscribir(a2);
+		c1.inscribirAlumno(a1);
+		c1.inscribirAlumno(a2);
 		List<Alumno> aux = c1.getInscriptos();
 		Collections.sort(aux, new SortByNombre());
 		c1.imprimirInscriptosPorNombre();
@@ -74,8 +74,8 @@ class CursoTest {
 
 	@Test
 	void testImprimirInscriptosPorNroLibreta() {
-		c1.inscribir(a1);
-		c1.inscribir(a2);
+		c1.inscribirAlumno(a1);
+		c1.inscribirAlumno(a2);
 		List<Alumno> aux = c1.getInscriptos();
 		Collections.sort(aux, new SortByLibreta());
 		c1.imprimirInscriptosPorNroLibreta();
@@ -84,8 +84,8 @@ class CursoTest {
 
 	@Test
 	void testImprimirInscriptosPorCreditos() {
-		c1.inscribir(a1);
-		c1.inscribir(a2);
+		c1.inscribirAlumno(a1);
+		c1.inscribirAlumno(a2);
 		List<Alumno> aux = c1.getInscriptos();
 		Collections.sort(aux, new SortByCreditos());
 		c1.imprimirInscriptosPorCreditos();
